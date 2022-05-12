@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oleo Script Swash Caps", cursive;
+}
+body {
+  line-height: 1;
+  min-height: 100vh;
+  max-height: auto;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  font-size: 55px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courgette", cursive;
+  background-image: url(./components/images/4k-joker-card-fa.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.App {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+}

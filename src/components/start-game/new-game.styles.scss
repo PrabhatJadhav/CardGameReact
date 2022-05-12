@@ -1,0 +1,92 @@
+.newStart {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  .center-screen {
+    width: 98%;
+    height: 90%;
+    background: rgb(73, 2, 72);
+    background: linear-gradient(
+      274deg,
+      rgba(73, 2, 72, 1) 45%,
+      rgba(155, 27, 158, 1) 79%
+    );
+    background-size: contain;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    column-gap: 10px;
+    padding: 10px;
+  }
+  .player1,
+  .player2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: black;
+    color: purple;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+  .divider {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .card-draw {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: dashed 1px purple;
+  }
+  .start {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    color: white;
+  }
+  button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+  .player2 {
+    width: 100%;
+  }
+}
+.hidden {
+  display: none;
+}
+.playerwins {
+  position: absolute;
+  padding: 100px;
+  font-family: "Oleo Script Swash Caps", cursive;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 60vh;
+  background-color: purple;
+  text-align: center;
+  color: white;
+  margin: 20px;
+  border-radius: 20px;
+  border: solid 1px black;
+  box-shadow: 0 0 2rem black;
+}
+.winnerDiv {
+  margin-bottom: 1.2rem;
+}
+.screen-blur {
+  filter: blur(10px);
+}
