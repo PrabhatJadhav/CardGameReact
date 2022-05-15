@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Oleo Script Swash Caps", cursive;
+  font-family: "Pacifico", cursive;
 }
 body {
   line-height: 1;
@@ -23,6 +23,7 @@ body {
   background-image: url(./components/images/4k-joker-card-fa.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  // animation: alternate-reverse infinite 5s ease-in-out;
 }
 .App {
   min-height: 100vh;

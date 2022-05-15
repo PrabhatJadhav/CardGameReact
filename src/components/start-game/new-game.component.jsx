@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { UseFetchCreateDeck, useFetchDrawCards } from "../useFetch";
 import "./new-game.styles.scss";
+import { motion } from "framer-motion";
 
 const cardsCode = [
   "AS",
@@ -70,7 +71,7 @@ const cardRankingChecker = (card1, card2) => {
     }
   });
 
-  if (player1 < player2) {
+  if (player1 > player2) {
     return 1;
   } else {
     return 0;
@@ -80,7 +81,7 @@ const cardRankingChecker = (card1, card2) => {
 function NewGame() {
   let cardId = useRef(null);
   const [TwoCard, setTwoCard] = useState(null);
-  const [remaining, setRemaining] = useState(52);
+  const [remaining, setRemaining] = useState(26);
   const [showWinner, setWinner] = useState(null);
   const [count, setCount] = useState({
     player1: 0,
@@ -100,7 +101,7 @@ function NewGame() {
     const cards = drawTwoCard.cards;
     if (drawTwoCard.success) {
       setTwoCard(cards);
-      setRemaining(drawTwoCard.remaining);
+      setRemaining(drawTwoCard.remaining / 2);
       setCount((prevState) => {
         const player = cardRankingChecker(cards[0].code, cards[1].code);
         if (player) {
@@ -118,9 +119,11 @@ function NewGame() {
 
       if (drawTwoCard.remaining === 0) {
         if (count.player1 > count.player2) {
-          setWinner("Player 1 wins ");
+          setWinner("Player Wins");
+        } else if (count.player1 === count.player2) {
+          setWinner("It's a Draw");
         } else {
-          setWinner("Player 2 wins");
+          setWinner("Computer Wins");
         }
       }
     }
@@ -128,10 +131,16 @@ function NewGame() {
   console.log(count);
 
   return (
-    <div className="newStart">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.2, duration: 1 }}
+      className="newStart"
+    >
       <div className={`center-screen ${showWinner ? "screen-blur" : ""}`}>
         <div className="player1">
-          <h1 className="title">Player 1</h1>
+          <h1 className="title">Player</h1>
           <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
@@ -141,12 +150,12 @@ function NewGame() {
         </div>
 
         <div className="start">
-          <h2>Remaining : {remaining}</h2>
-          <button onClick={DrawCard}>Play a card</button>
+          <h1>Rounds Left : {remaining}</h1>
+          <button onClick={DrawCard}>Play a Round</button>
         </div>
 
         <div className="player2">
-          <h1 className="title">Player 2</h1>
+          <h1 className="title">Computer</h1>
           <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
@@ -156,11 +165,11 @@ function NewGame() {
         </div>
       </div>
       <div className={`playerwins ${showWinner ? "" : "hidden"}`}>
-        <h1 className="winnerDiv">Player 1 Won {count.player1} times</h1>
-        <h1 className="winnerDiv">Player 2 Won {count.player2} times</h1>
+        <h1 className="winnerDiv">Player Won {count.player1} times</h1>
+        <h1 className="winnerDiv">Computer Won {count.player2} times</h1>
         <h1 className="winnerDiv">Result :- {showWinner}</h1>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

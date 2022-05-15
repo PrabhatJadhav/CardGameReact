@@ -59,6 +59,12 @@
     padding: 5px 10px;
     border: 1px solid black;
     border-radius: 10px;
+    width: 150px;
+    height: 42px;
+    font-size: 18px;
+  }
+  button:hover {
+    cursor: pointer;
   }
   .player2 {
     width: 100%;
@@ -69,8 +75,8 @@
 }
 .playerwins {
   position: absolute;
-  padding: 100px;
-  font-family: "Oleo Script Swash Caps", cursive;
+  padding: 80px;
+  font-family: "Pacifico", cursive;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -80,12 +86,12 @@
   text-align: center;
   color: white;
   margin: 20px;
-  border-radius: 20px;
-  border: solid 1px black;
-  box-shadow: 0 0 2rem black;
+  border-radius: 50px;
+  border: solid 2px white;
+  box-shadow: 0 1rem 2rem black;
 }
 .winnerDiv {
-  margin-bottom: 1.2rem;
+  margin-bottom: 2.5rem;
 }
 .screen-blur {
   filter: blur(10px);
