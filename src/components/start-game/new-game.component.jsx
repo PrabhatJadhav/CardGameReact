@@ -4,74 +4,74 @@ import "./new-game.styles.scss";
 import { motion } from "framer-motion";
 
 const cardsCode = [
-  "AS",
-  "AH",
-  "AD",
-  "AC",
-  "KS",
-  "KH",
-  "KD",
-  "KC",
-  "QS",
-  "QH",
-  "QD",
-  "QC",
-  "JS",
-  "JH",
-  "JD",
-  "JC",
-  "0S",
-  "0H",
-  "0D",
-  "0C",
-  "9S",
-  "9H",
-  "9D",
-  "9C",
-  "8S",
-  "8H",
-  "8D",
-  "8C",
-  "7S",
-  "7H",
-  "7D",
-  "7C",
-  "6S",
-  "6H",
-  "6D",
-  "6C",
-  "5S",
-  "5H",
-  "5D",
-  "5C",
-  "4S",
-  "4H",
-  "4D",
-  "4C",
-  "3S",
-  "3H",
-  "3D",
-  "3C",
   "2S",
   "2H",
   "2D",
   "2C",
+  "3S",
+  "3H",
+  "3D",
+  "3C",
+  "4S",
+  "4H",
+  "4D",
+  "4C",
+  "5S",
+  "5H",
+  "5D",
+  "5C",
+  "6S",
+  "6H",
+  "6D",
+  "6C",
+  "7S",
+  "7H",
+  "7D",
+  "7C",
+  "8S",
+  "8H",
+  "8D",
+  "8C",
+  "9S",
+  "9H",
+  "9D",
+  "9C",
+  "10S",
+  "10H",
+  "10D",
+  "10C",
+  "AS",
+  "AH",
+  "AD",
+  "AC",
+  "QS",
+  "QH",
+  "QD",
+  "QC",
+  "KS",
+  "KH",
+  "KD",
+  "KC",
+  "JS",
+  "JH",
+  "JD",
+  "JC",
 ];
 
 const cardRankingChecker = (card1, card2) => {
-  let player1, player2;
+  let player, computer;
   cardsCode.forEach((code, index) => {
     if (card1 === code) {
-      player1 = index;
+      player = index;
     }
   });
   cardsCode.forEach((code, index) => {
     if (card2 === code) {
-      player2 = index;
+      computer = index;
     }
   });
 
-  if (player1 > player2) {
+  if (player > computer) {
     return 1;
   } else {
     return 0;
@@ -84,8 +84,8 @@ function NewGame() {
   const [remaining, setRemaining] = useState(26);
   const [showWinner, setWinner] = useState(null);
   const [count, setCount] = useState({
-    player1: 0,
-    player2: 0,
+    player: 0,
+    computer: 0,
   });
 
   useEffect(() => {
@@ -107,20 +107,20 @@ function NewGame() {
         if (player) {
           return {
             ...count,
-            player1: prevState.player1 + 1,
+            player: prevState.player + 1,
           };
         } else {
           return {
             ...count,
-            player2: prevState.player2 + 1,
+            computer: prevState.computer + 1,
           };
         }
       });
 
       if (drawTwoCard.remaining === 0) {
-        if (count.player1 > count.player2) {
+        if (count.player > count.computer) {
           setWinner("Player Wins");
-        } else if (count.player1 === count.player2) {
+        } else if (count.player === count.computer) {
           setWinner("It's a Draw");
         } else {
           setWinner("Computer Wins");
@@ -139,7 +139,7 @@ function NewGame() {
       className="newStart"
     >
       <div className={`center-screen ${showWinner ? "screen-blur" : ""}`}>
-        <div className="player1">
+        <div className="player">
           <h1 className="title">Player</h1>
           <hr className="divider" />
           <div className="card-draw">
@@ -154,7 +154,7 @@ function NewGame() {
           <button onClick={DrawCard}>Play a Round</button>
         </div>
 
-        <div className="player2">
+        <div className="computer">
           <h1 className="title">Computer</h1>
           <hr className="divider" />
           <div className="card-draw">
@@ -165,8 +165,8 @@ function NewGame() {
         </div>
       </div>
       <div className={`playerwins ${showWinner ? "" : "hidden"}`}>
-        <h1 className="winnerDiv">Player Won {count.player1} times</h1>
-        <h1 className="winnerDiv">Computer Won {count.player2} times</h1>
+        <h1 className="winnerDiv">Player Won {count.player} times</h1>
+        <h1 className="winnerDiv">Computer Won {count.computer} times</h1>
         <h1 className="winnerDiv">Result :- {showWinner}</h1>
       </div>
     </motion.div>

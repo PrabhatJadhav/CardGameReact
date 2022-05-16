@@ -18,9 +18,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="moving">
-              <div className="bg-image moving-bg">Play The Game Of Cards</div>
-            </div>
+            <div className="bg-image moving-bg">Play The Game Of Cards</div>
           }
         />
         <Route path="start" element={<NewGame />} />
