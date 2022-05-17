@@ -62,6 +62,7 @@
     width: 150px;
     height: 42px;
     font-size: 18px;
+    border: 1.5px solid black;
   }
   button:hover {
     cursor: pointer;
@@ -95,4 +96,7 @@
 }
 .screen-blur {
   filter: blur(8px);
+}
+.ml-2 {
+  margin-left: 14px;
 }

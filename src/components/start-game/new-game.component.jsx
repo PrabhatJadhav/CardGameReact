@@ -40,10 +40,10 @@ const cardsCode = [
   "10H",
   "10D",
   "10C",
-  "AS",
-  "AH",
-  "AD",
-  "AC",
+  "JS",
+  "JH",
+  "JD",
+  "JC",
   "QS",
   "QH",
   "QD",
@@ -52,10 +52,10 @@ const cardsCode = [
   "KH",
   "KD",
   "KC",
-  "JS",
-  "JH",
-  "JD",
-  "JC",
+  "AS",
+  "AH",
+  "AD",
+  "AC",
 ];
 
 const cardRankingChecker = (card1, card2) => {
@@ -130,6 +130,24 @@ function NewGame() {
   };
   console.log(count);
 
+  const QuickGame = () => {
+    if (count.player !== 0 || count.computer !== 0) {
+      alert("Game Already Started, Refresh Page To Play This Mode");
+    } else {
+      let quickWinPlayer = Math.round(Math.random() * 26) + 0;
+      let quickWinComputer = 26 - quickWinPlayer;
+      count.player = quickWinPlayer;
+      count.computer = quickWinComputer;
+      if (quickWinPlayer > quickWinComputer) {
+        setWinner("Player Wins");
+      } else if (quickWinComputer === quickWinPlayer) {
+        setWinner("It's a Draw");
+      } else {
+        setWinner("Computer Wins");
+      }
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -140,26 +158,32 @@ function NewGame() {
     >
       <div className={`center-screen ${showWinner ? "screen-blur" : ""}`}>
         <div className="player">
-          <h1 className="title">Player</h1>
+          <h1 className="title">Player - {count.player}</h1>
           <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
-              <img src={TwoCard[0].image} alt="card" />
+              <img src={TwoCard[0].image} alt="card1" />
             )}
           </div>
         </div>
 
         <div className="start">
           <h1>Rounds Left : {remaining}</h1>
-          <button onClick={DrawCard}>Play a Round</button>
+          <div>
+            <button onClick={DrawCard}> Play a Round </button>
+            <button className="ml-2" onClick={QuickGame}>
+              {" "}
+              Quick Game{" "}
+            </button>
+          </div>
         </div>
 
         <div className="computer">
-          <h1 className="title">Computer</h1>
+          <h1 className="title">Computer - {count.computer}</h1>
           <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
-              <img src={TwoCard[1].image} alt="card" />
+              <img src={TwoCard[1].image} alt="card2" />
             )}{" "}
           </div>
         </div>
@@ -167,7 +191,7 @@ function NewGame() {
       <div className={`playerwins ${showWinner ? "" : "hidden"}`}>
         <h1 className="winnerDiv">Player Won {count.player} times</h1>
         <h1 className="winnerDiv">Computer Won {count.computer} times</h1>
-        <h1 className="winnerDiv">Result :- {showWinner}</h1>
+        <h1 className="winnerDiv">Result :- {showWinner} !!!</h1>
       </div>
     </motion.div>
   );

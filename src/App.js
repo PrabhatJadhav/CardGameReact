@@ -18,7 +18,11 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="bg-image moving-bg">Play The Game Of Cards</div>
+            <div className="bg-image">
+              <div className="bg-background">
+                <p>Play The Game Of Cards</p>
+              </div>
+            </div>
           }
         />
         <Route path="start" element={<NewGame />} />
@@ -28,3 +32,9 @@ function App() {
 }
 
 export default App;
+
+// One button simulation
+// dont use API for cards, use own logic
+// can use for images
+// number of rounds
+// give up btn
