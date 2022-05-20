@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { UseFetchCreateDeck, useFetchDrawCards } from "../useFetch";
 import "./new-game.styles.scss";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const cardsCode = [
   "2S",
@@ -131,16 +132,53 @@ function NewGame() {
   console.log(count);
 
   const QuickGame = () => {
-    if (count.player !== 0 || count.computer !== 0) {
-      alert("Game Already Started, Refresh Page To Play This Mode");
-    } else {
-      let quickWinPlayer = Math.round(Math.random() * 26) + 0;
-      let quickWinComputer = 26 - quickWinPlayer;
-      count.player = quickWinPlayer;
-      count.computer = quickWinComputer;
-      if (quickWinPlayer > quickWinComputer) {
+    if (
+      window.confirm("Are you sure you want to Simulate the game ?") === true
+    ) {
+      if (count.player !== 0 || count.computer !== 0) {
+        let total = count.computer + count.player;
+        let quickRemain = 26 - total;
+        let quickWinPlayer = Math.round(Math.random() * quickRemain) + 0;
+        let quickWinComputer = quickRemain - quickWinPlayer;
+        count.player = quickWinPlayer + count.player;
+        count.computer = quickWinComputer + count.computer;
+        if (quickWinPlayer > quickWinComputer) {
+          setWinner("Player Wins");
+        } else if (quickWinComputer === quickWinPlayer) {
+          setWinner("It's a Draw");
+        } else {
+          setWinner("Computer Wins");
+        }
+      } else {
+        let quickWinPlayer = Math.round(Math.random() * 26) + 0;
+        let quickWinComputer = 26 - quickWinPlayer;
+        count.player = quickWinPlayer;
+        count.computer = quickWinComputer;
+        if (quickWinPlayer > quickWinComputer) {
+          setWinner("Player Wins");
+        } else if (quickWinComputer === quickWinPlayer) {
+          setWinner("It's a Draw");
+        } else {
+          setWinner("Computer Wins");
+        }
+      }
+    }
+  };
+
+  const QuitGame = () => {
+    if (count.player === 0 && count.computer === 0) {
+      alert("Cannot Quit Without Starting The Game.");
+    } else if (
+      window.confirm(
+        "Are you sure you want to Quit? All Rounds will be awarded to Computer"
+      ) === true
+    ) {
+      let total = count.computer + count.player;
+      let quickRemain = 26 - total;
+      count.computer = quickRemain + count.computer;
+      if (count.player > count.computer) {
         setWinner("Player Wins");
-      } else if (quickWinComputer === quickWinPlayer) {
+      } else if (count.player === count.computer) {
         setWinner("It's a Draw");
       } else {
         setWinner("Computer Wins");
@@ -159,7 +197,6 @@ function NewGame() {
       <div className={`center-screen ${showWinner ? "screen-blur" : ""}`}>
         <div className="player">
           <h1 className="title">Player - {count.player}</h1>
-          <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
               <img src={TwoCard[0].image} alt="card1" />
@@ -168,19 +205,22 @@ function NewGame() {
         </div>
 
         <div className="start">
-          <h1>Rounds Left : {remaining}</h1>
+          <p>
+            Rounds Left :<b> {remaining}</b>
+          </p>
           <div>
             <button onClick={DrawCard}> Play a Round </button>
             <button className="ml-2" onClick={QuickGame}>
-              {" "}
-              Quick Game{" "}
+              Quick Game
+            </button>
+            <button className="ml-2" onClick={QuitGame}>
+              Quit
             </button>
           </div>
         </div>
 
         <div className="computer">
           <h1 className="title">Computer - {count.computer}</h1>
-          <hr className="divider" />
           <div className="card-draw">
             {Array.isArray(TwoCard) && (
               <img src={TwoCard[1].image} alt="card2" />
@@ -192,6 +232,9 @@ function NewGame() {
         <h1 className="winnerDiv">Player Won {count.player} times</h1>
         <h1 className="winnerDiv">Computer Won {count.computer} times</h1>
         <h1 className="winnerDiv">Result :- {showWinner} !!!</h1>
+        <Link className="clickLink" to={"/"}>
+          * Click Here To Play Again
+        </Link>
       </div>
     </motion.div>
   );

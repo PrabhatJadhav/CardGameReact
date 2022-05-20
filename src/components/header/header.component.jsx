@@ -5,7 +5,7 @@ import "./header.styles.scss";
 function Header() {
   return (
     <header className="header">
-      <div className="logo">
+      <div className="heading">
         <h3>Card Game</h3>
       </div>
       <div className="menu">

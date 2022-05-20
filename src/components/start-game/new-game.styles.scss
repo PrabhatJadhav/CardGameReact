@@ -9,18 +9,16 @@
   .center-screen {
     width: 98%;
     height: 90%;
-    background: rgb(73, 2, 72);
-    background: linear-gradient(
-      274deg,
-      rgba(73, 2, 72, 1) 45%,
-      rgba(155, 27, 158, 1) 79%
-    );
-    background-size: contain;
+    background: url(../images/sven-ciupka-HyjpI3rEGGE-unsplash.jpg);
+    // background: black;
+    background-size: cover;
+    background-position: right;
     border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     column-gap: 10px;
-    padding: 10px;
+    padding: 20px;
+    box-shadow: 0 0 1.5rem goldenrod;
   }
   .player,
   .computer {
@@ -28,23 +26,24 @@
     height: 100%;
     border-radius: 35px;
     background-color: black;
-    color: purple;
+    color: goldenrod;
     display: flex;
     flex-direction: column;
     gap: 10px;
     text-align: center;
     padding: 20px;
+    border: 1px solid goldenrod;
   }
-  .divider {
-    width: 90%;
-    margin: 0 auto;
+  .title {
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid goldenrod;
   }
   .card-draw {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: dashed 1px purple;
+    border: dashed 1px goldenrod;
   }
   .start {
     width: 100%;
@@ -53,7 +52,14 @@
     align-items: center;
     flex-direction: column;
     gap: 40px;
-    color: white;
+    p {
+      background-color: black;
+      color: goldenrod;
+      font-size: 55px;
+      padding: 16px;
+      border-radius: 40px;
+      border: 1.5px solid goldenrod;
+    }
   }
   button {
     padding: 5px 10px;
@@ -62,10 +68,15 @@
     width: 150px;
     height: 42px;
     font-size: 18px;
-    border: 1.5px solid black;
+    border: 1.4px solid goldenrod;
+    background: black;
+    color: goldenrod;
   }
   button:hover {
     cursor: pointer;
+    color: white;
+    border-color: white;
+    transition: 0.4s;
   }
   .player2 {
     width: 100%;
@@ -76,27 +87,34 @@
 }
 .playerwins {
   position: absolute;
-  padding: 80px;
-  font-family: "Pacifico", cursive;
-  top: 50%;
+  padding: 65px;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 700px;
   height: 60vh;
-  background-color: purple;
+  background-color: black;
   text-align: center;
-  color: white;
+  color: goldenrod;
   margin: 20px;
   border-radius: 50px;
-  border: solid 2px white;
-  box-shadow: 0 1rem 2rem black;
+  border: solid 1px goldenrod;
+  box-shadow: 0 0 1rem goldenrod;
 }
 .winnerDiv {
   margin-bottom: 2.5rem;
 }
 .screen-blur {
-  filter: blur(8px);
+  filter: blur(12px);
 }
 .ml-2 {
   margin-left: 14px;
+}
+.clickLink {
+  text-decoration: none;
+  color: crimson;
+}
+.clickLink:hover {
+  color: white;
+  transition: 0.4s;
 }

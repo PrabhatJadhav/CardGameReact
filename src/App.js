@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./app.scss";
+import Home from "./components/home";
 import Header from "./components/header/header.component";
 import NewGame from "./components/start-game/new-game.component";
 import { motion } from "framer-motion";
@@ -15,16 +15,7 @@ function App() {
     >
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="bg-image">
-              <div className="bg-background">
-                <p>Play The Game Of Cards</p>
-              </div>
-            </div>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="start" element={<NewGame />} />
       </Routes>
     </motion.div>
